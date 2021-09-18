@@ -1,0 +1,425 @@
+---
+title: "Vietnamese National University Entrance Exam in 2021 Analysis"
+author: "Sang Kha"
+date: "18/09/2021"
+---
+
+# Table of Contents
+
+* [Introduction](#Introduction)
+* [Ask](#ask)
+    * [Guiding questions](#ask-guiding)
+    * [Key tasks](#ask-key)
+    * [Deliverable](#ask-deliverable)
+* [Prepare](#prepare)
+    * [Guiding questions](#prepare-guiding)
+    * [Key tasks](#prepare-key)
+    * [Deliverable](#prepare-deliverable)
+* [Process](#process)
+    * [Code](#process-code)
+        * [Dependences](#process-code-dependencies)
+        * [Data cleaning](#process-code-data)
+    * [Guiding questions](#process-guiding)
+    * [Key tasks](#process-key)
+    * [Deliverable](#process-deliverable)
+* [Analyze](#analyze)
+    * [Code](#analyze-code)
+        * [Summary on subjects](#analyze-summary-subjects)
+        * [Summary on group of subjects](#analyze-summary-group-subjects)
+        * [Plot on subjects](#analyze-plot-subject)
+        * [Plot on group of subjects](#analyze-plot-group-subject)
+    * [Guiding questions](#analyze-guiding)
+    * [Key tasks](#analyze-key)
+    * [Deliverable](#analyze-deliverable)
+* [Share](#share)
+    * [Guiding questions](#share-guiding)
+    * [Key tasks](#share-key)
+    * [Deliverable](#share-deliverable)
+* [Act](#act)
+    * [Guiding questions](#act-guiding)
+    * [Key tasks](#act-key)
+    * [Deliverable](#act-deliverable)
+* [Conclusion](#conclusion)
+
+<a id="Introduction"></a>
+
+# Introduction
+
+This is the final project of Google Data Analytics Capstone - Case Study 3. The full document to the case study can be found in the [Google Data Analytics Capstone: Complete a Case Study](https://www.coursera.org/learn/google-data-analytics-capstone) course.
+
+This is different from all the other cases in this course, as it gives you the opportunity to choose a business question that is of particular interest to you. As a result, finding datasets and conducting analysis will be more complex and will require you to make many decisions on your own. 
+
+In this project, I will use test result database provided by Department of Education and Training. Also, I will use data crawling tool (Python) to get the CSV file from raw html format so that R can import the data and begin analysing.
+
+For this project these steps will be followed to ensure its completion:
+
+* It will follow the steps of the data analysis process: Ask, prepare, process, analyze, share, and act.
+* Each step will follow its own roadmap with:
+    * Code, if needed on the step.
+    * Guiding questions, with answers.
+    * Key tasks, as a checklist.
+    * Deliverable, as a checklist.
+
+------
+
+<a id="Ask"></a>
+
+# Ask
+
+<a id="ask-guiding"></a>
+
+### Guiding questions
+
+* **What topic are you exploring?**
+
+In this project, I am exploring the grades of Vietnamese students in the their National University Entrance Exam.
+    
+* **What is the problem you are trying to solve?**
+
+Students will have more information to decide which school and career to enroll in base on their score compared to the analysed result.
+
+* **What metrics will you use to measure your data to achieve your objective?**
+
+I will use visualization of this data from multiple internet sources to measure my accuracy.
+
+<a id="ask-key"></a>
+
+### Key tasks
+
+- [x] Identify the business task
+- [x] Consider key stakeholders
+
+<a id="ask-deliverable"></a>
+
+### Deliverable
+
+- [x] A clear statement of the business task
+
+------
+
+<a id="prepare"></a>
+
+# Prepare
+
+<a id="prepare-guiding"></a>
+
+### Guiding questions
+
+* **Where is your data located?**
+
+The project will use the data provided by [this public dataset](https://vietnamnet.vn/vn/giao-duc/tra-cuu-diem-thi-thpt/). 
+
+* **How is the data organized?**
+
+At first, this website allows us to find data of each candidate using their ID number.
+By using some Python data crawling skills, we can extract data of many candidates and store them into one CSV file.
+
+* **Are there issues with bias or credibility in this data?**
+
+There will be no issue as this is the data publish by Department of Education.
+
+* **How are you addressing licensing, privacy, security, and accessibility?**
+
+Candidate's personal information will not be included, as the analysis do not use any of person's ID number or name. Just their score will be recorded, but anonymously.
+
+* **How did you verify the data’s integrity?**
+
+I tested my data crawling algorithm many times before hand to make sure the data collected is sufficient and relevant.
+
+* **How does it help you answer your question?**
+
+Using this accurate dataset, I will be able to analyse and visualize the scores achieve by many candidates, therefore accomplish my initial goal.
+
+<a id="prepare-key"></a>
+
+### Key tasks
+
+- [x] Download data and store it appropriately.
+- [x] Identify how it’s organized.
+- [x] Sort and filter the data.
+- [x] Determine the credibility of the data.
+
+<a id="prepare-deliverable"></a>
+
+### Deliverable
+
+- [x] A description of all data sources used
+
+The main data source last updated time is 18/09/2021.
+
+------
+
+<a id="process"></a>
+
+# Process
+
+<a id="process-guiding"></a>
+
+### Guiding questions
+
+* **What tools are you choosing and why?**
+
+I used Python with some special libraries (pandas, request,..) for webscraping the data from website and export to a CSV file.
+
+Then I processed the data using R to clean it up and ensure data integrity.
+
+* **Have you ensured your data’s integrity?**
+
+Yes, the data is consistent throughout the columns.
+
+* **What steps have you taken to ensure that your data is clean?**
+
+First the duplicated values where removed, then the columns where formatted to their correct format.
+
+* **How can you verify that your data is clean and ready to analyze?**
+
+It can be verified by this notebook.
+
+* **Have you documented your cleaning process so you can review and share those results?**
+
+Yes, it's all documented in this R notebook.
+
+<a id="process-code"></a>
+
+### Code
+
+
+<a id="process-code-dependencies"></a>
+
+#### Dependencies
+
+The main dependency for the project will be tidyverse.
+
+```{r}
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+```
+
+#### Import the CSV file
+
+```{r}
+score_data<-read.csv("hcm.csv")
+head(score_data)
+```
+
+<a id="process-code-data"></a>
+
+#### Data cleaning
+
+```{r}
+score_data$X <- NULL
+score_data$groupCode <-NULL
+```
+
+<a id="process-"
+<a id="process-key"></a>
+
+### Key tasks
+
+- [x] Check the data for errors.
+- [x] Choose your tools.
+- [x] Transform the data so you can work with it effectively
+- [x] Document the cleaning process.
+
+<a id="process-deliverable"></a>
+
+### Deliverable
+
+- [x] Documentation of any cleaning or manipulation of data
+
+<a id="analyze"></a>
+
+# Analyze
+
+<a id="analyze-code"></a>
+
+<a id="analyze-summary-subjects"></a>
+
+### Summary by subjects
+
+```{r}
+cols<-c("TOAN","VAN","LY","HOA","SINH","SU","DIA","GDCD")
+nn1<-filter(score_data,CODE_NGOAINGU=="N1")
+nn6<-filter(score_data,CODE_NGOAINGU=="N6")
+colnames(nn1)[colnames(nn1)=="NGOAINGU"]<-"NN1"
+colnames(nn6)[colnames(nn6)=="NGOAINGU"]<-"NN6"
+
+summary(score_data[cols])
+summary(nn1["NN1"])
+summary(nn6["NN6"])
+
+```
+
+<a id="analyze-summary-group-subjects"></a>
+
+### Summary by Groups
+
+```{r}
+cols_group<-c("HKTN","HKXH","A00","B00","C00","D01","A01")
+summary(score_data[cols_group])
+```
+
+<a id="analyze-plot-subject"></a>
+
+### Plot by subjects
+
+```{r}
+
+hist(score_data$TOAN,main="Pho diem Toan",xlab="Diem",ylab="So sinh vien",
+     xlim=c(0,10),col=rainbow(14))
+
+hist(score_data$VAN,main="Pho diem Van",xlab="Diem",ylab="So sinh vien",
+     xlim=c(0,10),col=rainbow(14))
+
+hist(score_data$LY,main="Pho diem Ly",xlab="Diem",ylab="So sinh vien",
+     xlim=c(0,10),col=rainbow(14))
+
+hist(score_data$HOA,main="Pho diem Hoa",xlab="Diem",ylab="So sinh vien",
+     xlim=c(0,10),col=rainbow(14))
+
+hist(score_data$SINH,main="Pho diem Sinh",xlab="Diem",ylab="So sinh vien",
+     xlim=c(0,10),col=rainbow(14))
+
+hist(score_data$SU,main="Pho diem Su",xlab="Diem",ylab="So sinh vien",
+     xlim=c(0,10),col=rainbow(14))
+
+hist(score_data$DIA,main="Pho diem Dia",xlab="Diem",ylab="So sinh vien",
+     xlim=c(0,10),col=rainbow(14))
+
+hist(score_data$GDCD,main="Pho diem GDCD",xlab="Diem",ylab="So sinh vien",
+     xlim=c(0,10),col=rainbow(14))
+
+hist(nn1$NN1,main="Pho diem NN1 (Anh van)",xlab="Diem",ylab="So sinh vien",
+     xlim=c(0,10),col=rainbow(14))
+
+hist(nn6$NN6,main="Pho diem NN6 (Tieng Nhat)",xlab="Diem",ylab="So sinh vien",
+     xlim=c(0,10),col=rainbow(14))
+```
+
+<a id="analyze-plot-group-subject"></a>
+
+### Plot by Groups
+
+```{r}
+hist(score_data$HKTN,main="Pho diem KHTN",xlab="Diem",ylab="So sinh vien",col=rainbow(14))
+
+hist(score_data$HKXH,main="Pho diem KHXH",xlab="Diem",ylab="So sinh vien",col=rainbow(14))
+
+hist(score_data$A00,main="Pho diem Khoi A00",xlab="Diem",ylab="So sinh vien",col=rainbow(14))
+
+hist(score_data$A01,main="Pho diem Khoi A01",xlab="Diem",ylab="So sinh vien",col=rainbow(14))
+
+hist(score_data$B00,main="Pho diem Khoi B00",xlab="Diem",ylab="So sinh vien",col=rainbow(14))
+
+hist(score_data$C00,main="Pho diem Khoi C00",xlab="Diem",ylab="So sinh vien",col=rainbow(14))
+
+hist(score_data$D01,main="Pho diem Khoi D01",xlab="Diem",ylab="So sinh vien",col=rainbow(14))
+```
+<a id="analyze-guiding"></a>
+
+### Guiding questions
+
+* **How should you organize your data to perform analysis on it?**
+
+The data has been organized into a single CSV concatenating all the files from the dataset.
+
+* **Has your data been properly formatted?**
+
+Yes, all the columns have their correct data type.
+
+<a id="analyze-key"></a>
+
+### Key tasks
+
+- [x] Aggregate your data so it’s useful and accessible.
+- [x] Organize and format your data.
+- [x] Perform calculations.
+- [x] Identify trends and relationships.
+
+<a id="analyze-deliverable"></a>
+
+### Deliverable
+
+- [x] A summary of your analysis
+
+<a id="share"></a>
+
+# Share
+
+Now that you have performed your analysis and gained some insights into your data, create visualizations to share your findings.
+
+You will be presenting to your client and other stakeholders, so visuals should be sophisticated and polished in order to effectively
+communicate your insights.
+
+<a id="share-guiding"></a>
+
+### Guiding questions
+
+* **What story does your data tell?**
+
+My data tells the exam result distribution in National University Entrance Exam 2021
+
+* **How do your findings relate to your original question?**
+
+My findings in fact are still at a decent scale as I just get data of 1000 candidate in Ho Chi Minh City as a sample to analyse the data. However, it stills represent some main features of the big picture.
+
+* **Who is your audience? What is the best way to communicate with them?**
+
+My audience will be teachers, parents or students who are concerning about choosing the right university base on their exam result.
+
+* **Can data visualization help you share your findings?**
+
+Yes, the main core of the finds is through data visualization. They will figure out where they are in the middle of scores collected, therefore make better decision.
+
+* **Is your presentation accessible to your audience?**
+
+Yes, the plots were made using vibrant colors, and corresponding labels.
+
+<a id="share-key"></a>
+
+### Key tasks
+
+- [x] Determine the best way to share your findings.
+- [x] Create effective data visualizations.
+- [x] Present your findings.
+- [x] Ensure your work is accessible.
+
+<a id="share-deliverable"></a>
+
+### Deliverable
+
+- [x] Supporting visualizations and key findings
+
+<a id="act"></a>
+
+# Act
+
+Now that you have finished creating your visualizations, act on your findings. Organize the deliverables you created, including
+your top high-level insights based on your analysis.
+
+<a id="act-guiding"></a>
+
+### Guiding questions
+
+* **What is your final conclusion based on your analysis?**
+
+My analysis is just a reference for who want to have a quick look at students' literacy level in VietNam, 2021. The main reason behind this analysis is to show my data analysis skill that I learnt through Google Data Analytics Courses.
+
+* **Is there additional data you could use to expand on your findings?**
+
+Maybe in the future, I will expand the data to investigate all students in VietNam, but that will take a lot of time.
+    
+<a id="act-key"></a>
+
+### Key tasks
+
+- [x] Create your portfolio.
+- [x] Add your case study.
+- [x] Practice presenting your case study to a friend or family member.
+
+<a id="act-deliverable"></a>
+
+### Deliverable
+- [x] Your top high-level insights based on your analysis
+- [x] Based on what you discover, a list of additional deliverables you think would be helpful to include for further exploration
